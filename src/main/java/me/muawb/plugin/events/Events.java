@@ -38,12 +38,5 @@ public class Events implements Listener {
         }
 
     }
-    @EventHandler
-    public void give(PlayerJoinEvent e){
-        if(e.getPlayer().getWorld().equals("world")){
-            e.getPlayer().getInventory().getItem(1);
-        }
-    }
-
-
+   
 }
