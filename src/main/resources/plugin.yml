@@ -1,8 +1,0 @@
-name: Hub
-main: me.muawb.plugin.Main
-version: 1.0.0
-
-commands:
-   hub:
-     description: Teleport to lobby
-     usage: /hub
