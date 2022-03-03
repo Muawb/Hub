@@ -8,35 +8,28 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.List;
 
 public class Events implements Listener {
 
     private Main plugin;
 
-    public Events(Main plugin){
+    public Events(Main plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onHub(Player e){
-        Player p = e.getPlayer();
-
-        if(p.isOnline()){
-            Location loc = new Location(Bukkit.getWorld("pustoy"), -5.52, 8, 13.35);
-            p.teleport(loc);
-
-        }
-    }
-    @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        Player p = e.getPlayer();
-
+     Player p = e.getPlayer();
         if(p.isOnline()){
-            Location loc = new Location(Bukkit.getWorld("pustoy"), -5.52, 8, 13.35);
+            String world = plugin.getConfig().getString("Settings.World");
+            String x = plugin.getConfig().getString("Settings.Location.x");
+            String y = plugin.getConfig().getString("Settings.Location.y");
+            String z = plugin.getConfig().getString("Settings.Location.z");
+
+            Location loc = new Location(Bukkit.getWorld(world),
+                    Integer.parseInt(x),Integer.parseInt(y), Integer.parseInt(z));
             p.teleport(loc);
         }
-
     }
-   
 }
+

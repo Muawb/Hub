@@ -1,13 +1,13 @@
 package me.muawb.plugin.commands;
 
 import me.muawb.plugin.Main;
-import me.muawb.plugin.events.Events;
+import me.muawb.plugin.settings.Teleport;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerJoinEvent;
+
 
 public class ToHub implements CommandExecutor{
 
@@ -20,16 +20,17 @@ public class ToHub implements CommandExecutor{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player p = (Player) sender;
-        if(!sender.hasPermission("hub.join")){
+        if(!sender.hasPermission("hub.tp")){
             p.sendMessage(ChatColor.DARK_RED + "У вас нету прав");
             return true;
         }
+
         if(command.getName().equalsIgnoreCase("hub")){
-            Events events = new Events(this.plugin);
-            events.onHub(p);
+            Teleport tp = new Teleport(this.plugin);
+            tp.tpLobby(p);
+            tp.tpMassage(p);
             return true;
         }
-
         return false;
     }
 }
